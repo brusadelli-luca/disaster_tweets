@@ -1,5 +1,6 @@
 *.csv
 *.txt
 !stopwords.txt
+!requirements.txt
 *.ipynb_checkpoints
 __pycache__
