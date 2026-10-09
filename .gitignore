@@ -1,4 +1,12 @@
 *.csv
 *.txt
-*.ipynb_checkpoints
-__pycache__
+!stopwords.txt
+!requirements.txt
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+venv/
+.env
+kaggle.json
+*.pem
+*.key

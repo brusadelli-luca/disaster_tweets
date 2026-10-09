@@ -1,18 +1,44 @@
 # disaster_tweets
 
-La prolifération croissante de la désinformation, également connue sous le nom de "fake news", dans les médias sociaux est un phénomène préoccupant.
-En période de crise, notamment lors de catastrophes, il devient encore plus difficile d'identifier les informations fiables et véridiques parmi la
-multitude de contenus diffusés.
+Pendant une catastrophe, les réseaux sociaux mélangent des messages qui la signalent vraiment et des messages qui emploient les mêmes mots dans un autre sens (par exemple « on fire » pour dire « en forme »). Ce projet utilise le traitement automatique du langage (NLTK) et le machine learning (scikit-learn, XGBoost) pour classer des tweets en deux catégories : parle d'une catastrophe réelle (1) ou non (0).
 
-Dans ce contexte, un projet a été lancé afin de développer un système permettant de distinguer les informations réelles de la désinformation sur
-le réseau social Twitter. Cette initiative vise à fournir au public des outils pour évaluer la véracité des tweets.
+Les données viennent de la compétition Kaggle [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/competitions/nlp-getting-started).
 
-Pour atteindre cet objectif, la technologie utilisée est le traitement automatique du langage. Les données d'entraînement et de test nécessaires 
-ont été obtenues à partir de jeux de données provenant de Kaggle. Une fois les données préparées, des modèles de machine learning ont été implémentés
-pour classer les tweets comme informatifs ou non informatifs.
+## Contenu
 
-L'objectif final de ce projet est de fournir un système automatisé capable d'évaluer la crédibilité des informations diffusées sur Twitter, contribuant
-ainsi à renforcer la confiance dans les sources d'informations légitimes et à lutter contre la désinformation pendant les périodes de crise.
+- `viz_eye_emergency.ipynb` : exploration et visualisation des données (doublons, longueur des tweets, localisation, nuages de mots).
+- `ML_eye_emergency.ipynb` : nettoyage du texte, vectorisation TF-IDF, entraînement et comparaison de 5 modèles (SVM, arbre de décision, forêt aléatoire, régression logistique, XGBoost), puis prédictions sur le jeu de test.
+- `veille_nlp.ipynb` : notes de veille sur le NLP (sans code).
+- `fonctions.py` : fonction de nettoyage du texte utilisée par le notebook ML.
+- `stopwords.txt` : liste de mots vides utilisée pour les nuages de mots.
 
-En poursuivant cette démarche, nous espérons apporter une contribution significative à la lutte contre la propagation de la désinformation et à 
-la préservation de l'intégrité de l'information dans le paysage médiatique actuel.
+Les sorties (tableaux et graphiques) sont enregistrées dans les notebooks : GitHub les affiche sans rien exécuter.
+
+## Données
+
+Les données de la compétition ne sont pas redistribuées dans ce dépôt (voir le règlement de la compétition). Pour les obtenir :
+
+1. Télécharger `train.csv` et `test.csv` depuis l'onglet « Data » de la compétition (il faut un compte Kaggle et accepter le règlement).
+2. Les renommer en `train_tweets.csv` et `test_tweets.csv`.
+3. Les placer à la racine du projet, à côté des notebooks.
+
+## Installation et exécution
+
+Testé avec Python 3.12 et 3.14.
+
+```
+python -m venv .venv
+.venv\Scripts\activate          (Windows)
+source .venv/bin/activate       (macOS / Linux)
+pip install -r requirements.txt
+```
+
+Pour ouvrir les notebooks, utiliser VS Code avec l'extension Jupyter, ou `pip install jupyterlab` puis `jupyter lab`. Ensuite, lancer « Run All ». Au premier lancement, le notebook ML télécharge les ressources NLTK nécessaires.
+
+## Résultats
+
+En validation, la régression logistique et le SVM obtiennent environ 80 à 81 % d'accuracy. Le détail est dans la conclusion du notebook ML.
+
+## Auteurs
+
+Projet réalisé par brusadelli-luca et sadio-amina. Code écrit en 2023 ; revue et corrections de 2026 faites avec Claude.

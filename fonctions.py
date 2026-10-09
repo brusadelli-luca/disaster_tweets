@@ -4,13 +4,13 @@ from nltk.tokenize import word_tokenize
 
 import string
 
+# Charger les stop-words en anglais (une seule fois, à l'import du module)
+stop_words = set(stopwords.words('english'))
+
+# Initialiser le lemmatizer (une seule fois)
+lemmatizer = WordNetLemmatizer()
+
 def text_processing(text):
-     #Charger les stop-words en anglais
-    stop_words = set(stopwords.words('english'))
-
-    # Initialiser le lemmatizer
-    lemmatizer = WordNetLemmatizer()
-
     # Appliquer la tokenisation à tous les textes
     tokens = word_tokenize(text.lower())
 
